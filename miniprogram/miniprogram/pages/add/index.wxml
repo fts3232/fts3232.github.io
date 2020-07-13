@@ -1,7 +1,5 @@
-<import src="../../templates/header/index.wxml" />
-<import src="../../templates/footer/index.wxml" />
+
 <view class="container">
-  <template is="header"/>
-  <template is="footer"/>
+  <text>add</text>
 </view>
 

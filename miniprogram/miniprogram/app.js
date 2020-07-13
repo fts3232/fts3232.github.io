@@ -16,7 +16,18 @@ App({
         }
     },
     globalData: {
-        
+        "list"  : {
+            "home": {
+                path: "/pages/index/index",
+                icon: "home-o",
+                text: "首页"
+            },
+            "add" : {
+                path: "/pages/add/index",
+                icon: "add",
+                text: "添加"
+            }
+        }
     },
     //生命周期回调——监听小程序启动或切前台
     onShow() {

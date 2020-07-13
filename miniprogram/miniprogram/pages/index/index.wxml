@@ -1,7 +1,19 @@
-<import src="../../templates/header/index.wxml" />
-<import src="../../templates/footer/index.wxml" />
 <view class="container">
-  <template is="header"/>
-  <template is="footer"/>
+    <van-grid column-num="1">
+        <van-grid-item use-slot>
+            <text>净值</text>
+            <text>3,913.00</text>
+        </van-grid-item>
+       </van-grid>
+   <van-grid column-num="2">
+     <van-grid-item use-slot>
+             <text>总收入</text>
+             <text>3,913.00</text>
+         </van-grid-item>
+     <van-grid-item use-slot>
+             <text>总支出</text>
+             <text>3,913.00</text>
+         </van-grid-item>
+   </van-grid>
 </view>
 

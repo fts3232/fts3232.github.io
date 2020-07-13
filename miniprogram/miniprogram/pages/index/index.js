@@ -1,10 +1,7 @@
 //index.js
-const app = getApp();
 
 Page({
-    data: {
-        text: "This is page data."
-    },
+    data: {},
     onLoad: function(options) {
         // 页面创建时执行
         console.log(options)
@@ -35,11 +32,5 @@ Page({
     },
     onResize: function() {
         // 页面尺寸变化时执行
-    },
-    onTabItemTap(item) {
-        // tab 点击时执行
-        console.log(item.index)
-        console.log(item.pagePath)
-        console.log(item.text)
     }
 })

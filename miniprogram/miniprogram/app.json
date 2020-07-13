@@ -1,6 +1,7 @@
 {
     "pages": [
-        "pages/index/index"
+        "pages/index/index",
+        "pages/add/index"
     ],
     "window": {
         "backgroundColor": "#eeeeee",
@@ -8,18 +9,6 @@
         "navigationBarBackgroundColor": "#ffffff",
         "navigationBarTitleText": "云开发",
         "navigationBarTextStyle": "black"
-    },
-    "tabBar": {
-        "list": [
-            {
-                "pagePath": "pages/index/index",
-                "text": "按钮1"
-            },
-            {
-                "pagePath": "pages/index/index",
-                "text": "按钮2"
-            }
-        ]
     },
     "networkTimeout": {
         "request": 60000,
@@ -31,11 +20,24 @@
     "functionalPages": {
         "independent": true
     },
+    "tabBar": {
+        "custom": true,
+        "color": "#7A7E83",
+        "selectedColor": "#3cc51f",
+        "borderStyle": "black",
+        "backgroundColor": "#ffffff",
+        "list": [{
+            "pagePath": "pages/index/index",
+            "text": "组件"
+        }, {
+            "pagePath": "pages/add/index",
+            "text": "接口"
+        }]
+    },
     "workers": "workers",
     "requiredBackgroundModes": [
         "audio",
         "location"
     ],
-    "style": "v2",
     "sitemapLocation": "sitemap.json"
 }
