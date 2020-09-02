@@ -1,0 +1,46 @@
+.equity, .income {
+    color: #5BC50D;
+    --cell-value-color:#5BC50D;
+    --color:#5BC50D;
+}
+
+.expend {
+    color: #ff0000;
+    --cell-value-color:#ff0000;
+    --color:#ff0000;
+}
+
+.vertical-align-middle {
+    vertical-align: middle;
+}
+
+.text-align-left {
+    text-align: left;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.text-align-right {
+    text-align: right;
+}
+
+.font-weight-normal {
+    font-weight: normal;
+}
+
+/** 空状态 **/
+.custom-empty .van-empty{
+    background: #fff;
+    margin-top: 20rpx;
+    height: calc(100vh - constant(safe-area-inset-bottom) - 270rpx);
+    height: calc(100vh - env(safe-area-inset-bottom) - 270rpx);
+}
+
+/** 分割 **/
+.divider .van-divider {
+    width: 600rpx;
+    margin: 16px auto;
+    border-color: #ccc;
+}

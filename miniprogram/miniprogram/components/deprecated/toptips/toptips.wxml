@@ -1,0 +1,1 @@
+<mp-toptips ext-class="toptips" msg="{{ msg }}" type="{{ type }}" show="{{ show }}" delay="{{ delay }}"></mp-toptips>

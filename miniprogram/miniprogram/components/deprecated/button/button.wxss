@@ -1,0 +1,3 @@
+.button[size=mini] + .button[size=mini] {
+    margin-left: 10px;
+}

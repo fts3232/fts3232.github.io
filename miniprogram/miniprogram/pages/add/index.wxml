@@ -1,5 +1,3 @@
-
 <view class="container">
-  <text>add</text>
+    <case-note-form></case-note-form>
 </view>
-

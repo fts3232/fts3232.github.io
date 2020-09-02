@@ -1,0 +1,58 @@
+@import "../../style/common.wxss";
+@import "../../style/layout.wxss";
+
+/** 类型选择器 **/
+.category-picker {
+    height:50%;
+}
+
+.category-picker .wrapper {
+    box-sizing: border-box;
+    padding: 80rpx 0 20rpx 0;
+    height: 100%;
+
+}
+
+.category-picker .group {
+    padding:0 20rpx;
+    margin-bottom: 2rpx;
+}
+
+.category-picker .group .group-title {
+    margin-top: 30rpx;
+    padding: 0 20rpx;
+    box-sizing: border-box;
+}
+
+.category-picker .group .group-title .text-align-right {
+    color:#576b94;
+    font-size: 28rpx;
+}
+
+.category-picker .group .group-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.category-picker .group .group-content .item {
+    background: #eeeeee;
+    font-size: 24rpx;
+    margin: 0;
+    display: inline-block;
+    margin-right: 20rpx;
+    margin-top: 20rpx;
+    text-align: center;
+    padding: 10rpx;
+    box-sizing: border-box;
+    border:2rpx solid #ccc;
+    width: calc(33.3333% - 15rpx);
+}
+
+.category-picker .group .group-content .item.selected {
+    background: #3cc51f;
+    color:#fff;
+}
+
+.category-picker .group .group-content .item:nth-child(3n), .category-picker .group .group-content .item:last-child {
+    margin-right: 0;
+}

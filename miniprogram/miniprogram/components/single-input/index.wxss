@@ -1,0 +1,39 @@
+@import "../../style/common.wxss";
+@import "../../style/layout.wxss";
+
+/** 编辑输入 **/
+.single-input {
+    margin-top: 75rpx;
+}
+
+.single-input .toolbar {
+    height: 88rpx;
+    line-height: 88rpx;
+    justify-content: space-between;
+}
+
+.single-input .toolbar .title{
+    font-weight: 500;
+    font-size: 32rpx;
+    text-align: center;
+}
+
+.single-input .toolbar .button {
+    display: inline-block;
+    margin: 0;
+    padding: 0 32rpx;
+    font-size: 28rpx;
+    height: 100%;
+    color: #576b95;
+    line-height: inherit;
+    border:none;
+    background: none;
+}
+
+.single-input .button:after{
+    content:none;
+}
+
+.single-input .button.cancel {
+    color: #969799;
+}

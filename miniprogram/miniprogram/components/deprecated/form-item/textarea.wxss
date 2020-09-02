@@ -1,0 +1,4 @@
+@import "base.wxss";
+.form-input {
+    height: 70px;
+}

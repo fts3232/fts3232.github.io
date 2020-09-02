@@ -1,0 +1,174 @@
+<!-- 工具包 -->
+<wxs src="../../util/util.wxs" module="util"/>
+
+<scroll-view class="container" scroll-y="{{ true }}" scroll-with-animation refresher-enabled="{{ refresherEnabled }}" bind:refresherrefresh="onPullDownRefresh" refresher-triggered="{{ refreshStatus }}" bind:scroll="onPageScroll">
+    <!-- 头部 -->
+    <view class="header">
+        <view class="row">
+            <view class="col">
+                <button class="date-picker-button" bind:tap="onShowDatePicker" hover-class="none">
+                    <text>{{ util.dateFormat(currentDate, 'Y年m月') }}</text>
+                    <text class="divider">|</text>
+                    <van-icon name="calender-o" class="icon" size="50rpx" color="#7b7b7b"/>
+                </button>
+            </view>
+        </view>
+        <view class="row">
+            <view class="col">
+                <view>
+                    <text>共收入</text>
+                </view>
+                <view>
+                    <text class="income">￥{{ !util.isEmpty(list) ? util.toFixed(list.list[currentMonth].income.amount, 2) : '0.00' }}</text>
+                </view>
+            </view>
+            <view class="col">
+                <view>
+                    <text>共支出</text>
+                </view>
+                <view>
+                    <text class="expend">￥{{ !util.isEmpty(list) ?  util.toFixed(list.list[currentMonth].expend.amount, 2) : '0.00' }}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 详情 -->
+    <view class="detail" wx:if="{{ list.list[currentMonth].expend.amount !== 0 || list.list[currentMonth].income.amount !== 0 }}">
+        <view class="wrapper">
+            <!-- 收支构成 -->
+            <view class="section">
+                <view class="row title">
+                    <view class="col">
+                        <text>收支构成</text>
+                    </view>
+                    <view class="col">
+                        <text bind:tap="onChangeType" data-val="0" data-id="1" class="tag expend{{ switch[1] == 0 ? ' active' : '' }}">支出</text>
+                        <text bind:tap="onChangeType" data-val="1" data-id="1" class="tag income{{ switch[1] == 1 ? ' active' : '' }}">收入</text>
+                    </view>
+                </view>
+                <view class="list">
+                    <navigator url="/pages/list/index?month={{ currentMonth }}&category={{ item.category }}&type={{ switch[1] }}" wx:for="{{ switch[1] == 0 ? list.list[currentMonth].expend.composition : list.list[currentMonth].income.composition }}" wx:key="name">
+                        <view class="row">
+                            <view class="col left">
+                                <text>{{ item.category }}</text>
+                            </view>
+                            <view class="col progress-wrapper">
+                                <text class="text">{{ util.getPercentage(item.total, (switch[1] == 0 ? list.list[currentMonth].expend.amount : list.list[currentMonth].income.amount)) }}%</text>
+                                <van-progress show-pivot="{{ false }}" color="{{ switch[1] == 0 ? '#ff0000' : '#5BC50D' }}" stroke-width="20rpx"
+                                              percentage="{{ util.getPercentage(item.total, (switch[1] == 0 ? list.list[currentMonth].expend.amount : list.list[currentMonth].income.amount)) }}" class="progress"
+                                              custom-class="progress-root"/>
+                            </view>
+                            <view class="col right">
+                                <text class="text vertical-align-middle">￥{{ util.toFixed(item.total, 2) }}</text>
+                                <van-icon name="arrow" class="icon vertical-align-middle" color="#b9b9b9"/>
+                            </view>
+                        </view>
+                    </navigator>
+                </view>
+            </view>
+            <van-divider/>
+            <!-- 每日对比 -->
+            <view class="section">
+                <view class="row title">
+                    <view class="col">
+                        <text>每日对比</text>
+                    </view>
+                    <view class="col">
+                        <text bind:tap="onChangeType" data-val="0" data-id="2" class="tag expend{{ switch[2] == 0 ? ' active' : '' }}">支出</text>
+                        <text bind:tap="onChangeType" data-val="1" data-id="2" class="tag income{{ switch[2] == 1 ? ' active' : '' }}">收入</text>
+                    </view>
+                </view>
+                <view class="row">
+                    <scroll-view class="chart chart-date {{ switch[2] == 0 ? 'expend' : 'income' }}" scroll-x="{{ true }}" scroll-with-animation enable-flex="{{ true }}" scroll-into-view="{{ chart.date.toView }}">
+                        <view wx:for="{{ list.list[currentMonth].list }}" id="date{{ item.key }}" class="chart-item{{ chart.date.selected == item.key ? ' selected' : '' }}" wx:key="key" data-type="date" data-index="{{ item.key }}" bind:tap="onTapChart">
+                            <view class="percentage-bar">
+                                <text class="text">￥{{ util.toFixed(switch[2] == 0 ? item.expend : item.income, 2) }}</text>
+                                <view class="percentage"
+                                      style="--height: {{ switch[2] == 0 ? util.getPercentage(item.expend, list.list[currentMonth].expend.amount) : util.getPercentage(item.income, list.list[currentMonth].income.amount) }}%;"></view>
+                            </view>
+                            <view class="divider"></view>
+                            <view class="name">
+                                <view>{{ util.getWeekDay(item.day) }}</view>
+                                <view>{{ item.date }}</view>
+                            </view>
+                        </view>
+                    </scroll-view>
+                </view>
+            </view>
+            <van-divider/>
+            <!-- 月度对比 -->
+            <view class="section">
+                <view class="row title">
+                    <view class="col">
+                        <text>月度对比</text>
+                    </view>
+                    <view class="col">
+                        <text bind:tap="onChangeType" data-val="0" data-id="3" class="tag expend{{ switch[3] == 0 ? ' active' : '' }}">支出</text>
+                        <text bind:tap="onChangeType" data-val="1" data-id="3" class="tag income{{ switch[3] == 1 ? ' active' : '' }}">收入</text>
+                    </view>
+                </view>
+                <view class="row">
+                    <view class="chart chart-month {{ switch[3] == 0 ? 'expend' : 'income' }}">
+                        <view wx:for="{{ list.list }}" class="chart-item{{ chart.month.selected == index ? ' selected' : '' }}" wx:key="key" data-type="month" data-index="{{ index }}" bind:tap="onTapChart">
+                            <view class="percentage-bar">
+                                <text class="text">￥{{ util.toFixed(switch[3] == 0 ? item.expend.amount : item.income.amount, 2) }}</text>
+                                <view class="percentage" style="--height: {{ switch[3] == 0 ? util.getPercentage(item.expend.amount, list.total.expend) : util.getPercentage(item.income.amount, list.total.income) }}%;"></view>
+                            </view>
+                            <view class="divider"></view>
+                            <view class="name{{ item.month == 12 ? ' border-right' : '' }}">
+                                <view>{{ item.month }}月</view>
+                                <view wx:if="{{ item.month === 1 || item.month === 12 }}">{{ item.year }}</view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <!--收入排行 -->
+            <view class="section rank" wx:if="{{ !util.isEmpty(switch[3] == 0 ? list.list[chart.month.selected]['expend'].rank : list.list[chart.month.selected]['income'].rank) }}">
+                <view class="row title">
+                    <view class="col">
+                        <text>{{ chart.month.selected }}月收入排行</text>
+                    </view>
+                    <view class="col">
+                        <navigator url="/pages/list/index?month={{ chart.month.selected }}&type={{ switch[3] }}">
+                            <text class="more">查看全部</text>
+                        </navigator>
+                    </view>
+                </view>
+                <view class="list">
+                    <navigator url="/pages/detail/index?id={{ item.id }}" wx:for="{{ switch[3] == 0 ? list.list[chart.month.selected]['expend'].rank : list.list[chart.month.selected]['income'].rank }}" wx:key="id">
+                        <view class="row">
+                            <view class="col left">
+                                <text>
+                                    <text class="number">{{ index + 1 }}. </text>{{ item.category }}
+                                </text>
+                            </view>
+                            <view class="col right">
+                                <view class="amount {{ switch[3] == 0 ? 'expend' : 'income' }}">
+                                    <text>{{ switch[3] == 0 ? '-' : '+' }}{{ util.toFixed(item.amount, 2) }}</text>
+                                </view>
+                                <view class="date">
+                                    <text>{{ util.dateFormat(item.date,'m月d日') }}</text>
+                                </view>
+                            </view>
+                        </view>
+                    </navigator>
+
+                </view>
+            </view>
+        </view>
+    </view>
+    <van-empty wx:else description="暂无数据" class="custom-empty"/>
+</scroll-view>
+
+<!-- 时间选择器弹出层 -->
+<datetime-picker
+        show="{{ showDatePicker }}"
+        type="year-month"
+        title="选择年月"
+        value="{{ currentDate }}"
+        bind:confirm="onConfirmDate"
+/>
+
+<!-- 轻提示 -->
+<van-toast id="van-toast"/>

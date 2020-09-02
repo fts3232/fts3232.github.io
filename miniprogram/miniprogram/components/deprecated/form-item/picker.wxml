@@ -1,0 +1,9 @@
+<view class="form-control{{ focus ? ' focus' : '' }}">
+    <picker mode="{{ mode }}" range="{{ range }}" range-key="{{ rangeKey }}" value="{{ mode === 'multiSelector' ? index : value }}" bind:change="onChange" bind:cancel="onCancel" bind:tap="onFocus" bind:columnchange="onColumnChange">
+        <label>
+            <text class="form-label">{{ label }}</text>
+            <input class="form-input" placeholder="{{ placeholder }}" value="{{ text }}" disabled/>
+        </label>
+        <view class="form-control-underline"></view>
+    </picker>
+</view>

@@ -1,14 +1,18 @@
 {
     "pages": [
         "pages/index/index",
-        "pages/add/index"
+        "pages/statistics/index",
+        "pages/setting/index",
+        "pages/detail/index",
+        "pages/list/index"
     ],
     "window": {
         "backgroundColor": "#eeeeee",
         "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#ffffff",
-        "navigationBarTitleText": "云开发",
-        "navigationBarTextStyle": "black"
+        "navigationBarBackgroundColor": "#3f51b5",
+        "navigationBarTitleText": "记账本",
+        "navigationBarTextStyle": "white",
+        "onReachBottomDistance": 50
     },
     "networkTimeout": {
         "request": 60000,
@@ -26,18 +30,31 @@
         "selectedColor": "#3cc51f",
         "borderStyle": "black",
         "backgroundColor": "#ffffff",
-        "list": [{
-            "pagePath": "pages/index/index",
-            "text": "组件"
-        }, {
-            "pagePath": "pages/add/index",
-            "text": "接口"
-        }]
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页"
+            },
+            {
+                "pagePath": "pages/statistics/index",
+                "text": "统计"
+            },
+            {
+                "pagePath": "pages/setting/index",
+                "text": "设置"
+            }
+        ]
     },
-    "workers": "workers",
     "requiredBackgroundModes": [
         "audio",
         "location"
     ],
+    "useExtendedLib": {
+        "kbone": true,
+        "weui": true
+    },
+    "usingComponents": {
+        "van-toast": "@vant/weapp/toast/index"
+    },
     "sitemapLocation": "sitemap.json"
 }

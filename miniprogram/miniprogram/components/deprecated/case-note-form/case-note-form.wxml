@@ -1,0 +1,16 @@
+<view>
+    <mp-form rules="{{ rules }}" models="{{ formData }}" id="form" wx:if="{{ show }}">
+        <!--<my-picker mode="date" label="日期" placeholder="请选择日期" value="{{ formData.date }}" bind:change="onInput" data-name="date"/>-->
+        <my-picker mode="multiSelector" label="项目" placeholder="请选择项目" value="{{ formData.category }}" range="{{ [typeArray, categoryArray[column]]}}" range-key="name" bind:change="onInput" bind:columnchange="onColumnChange" data-name="category"/>
+        <my-input label="金额" type="digit" placeholder="请输入金额" value="{{ formData.amount }}" bind:input="onInput" data-name="amount"/>
+        <my-textarea label="备注" placeholder="请输入备注" value="{{ formData.remark }}" bind:input="onInput" data-name="remark"/>
+        <view class="button-box">
+            <my-button size="mini" type="primary" bind:tap="onSubmit">提交</my-button>
+            <my-button size="mini" type="info" bind:tap="onReset">重置</my-button>
+            <navigator url="/pages/index/index" open-type="switchTab" class="navigator">
+                <my-button size="mini" type="info">返回</my-button>
+            </navigator>
+        </view>
+    </mp-form>
+    <my-toptips id="toptips"></my-toptips>
+</view>

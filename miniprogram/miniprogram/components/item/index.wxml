@@ -1,0 +1,13 @@
+<view class="item">
+    <van-swipe-cell right-width="{{ 65 }}" async-close bind:close="onClose">
+        <van-cell title="{{ title }}" link-type="navigateTo"
+                  url="{{ url }}" clickable border="{{ border }}" label="{{ label }}"
+                  value="{{ value }}"
+                  center="{{ true }}" value-class="{{ valueClass }}"/>
+        <view slot="right" class="delete-button">
+            <van-button type="danger">
+                <van-icon name="delete"/>
+            </van-button>
+        </view>
+    </van-swipe-cell>
+</view>

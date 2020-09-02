@@ -1,0 +1,57 @@
+<!-- 工具包 -->
+<wxs src="../../util/util.wxs" module="util"/>
+
+<!-- 编辑器弹出层 -->
+<van-popup show="{{ show }}" bind:close="onClose" closeable position="bottom" z-index="10000" custom-class="editor" close-icon-position="top-left">
+    <view class="row date">
+        <view class="col text-align-right">
+            <view class="button" bind:tap="onShowDatePicker">
+                {{ util.dateFormat(form.date, 'm月d日') }}
+            </view>
+        </view>
+    </view>
+    <view class="row amount">
+        <view class="col">
+            <text>￥{{ form.amount }}</text>
+        </view>
+    </view>
+    <view class="row category" bind:tap="onShowCategoryPicker">
+        <view class="col">
+            <text>{{ form.category ? (form.type === 0 ? '支出' : '收入') + ' - ' + form.category : '选择类型' }}</text>
+        </view>
+    </view>
+    <view class="row remark" bind:tap="onShowInput" data-name="remark">
+        <view class="col">
+            <text>{{ form.remark ? form.remark : '添加备注' }}</text>
+        </view>
+    </view>
+    <view class="row keyboard">
+        <view class="col left">
+            <text wx:for="{{ [1, 2, 3,  4, 5, 6, 7, 8, 9, 0, '.'] }}" class="key" bind:tap="onTapKeyboard" wx:key="*this" data-key="{{ item }}">{{ item }}</text>
+        </view>
+        <view class="col right">
+            <text wx:for="{{ {cancel:'清除',confirm:'确定'} }}" wx:for-index="key" wx:for-item="value" wx:key="*this" class="key{{ !form.amount && key === 'confirm' ? ' disabled' : '' }}" bind:tap="onTapKeyboard" data-key="{{ key }}">{{
+                value }}
+            </text>
+        </view>
+    </view>
+</van-popup>
+
+<!-- 备注填写弹出层 -->
+<single-input show="{{ input.show }}" title="请添加备注" placeholder="请添加备注" maxLength="30" value="{{ form.remark }}" focus="{{input.focus}}" bind:close="onCloseInput" bind:confirm="onConfirmInput"/>
+
+<!-- 时间选择器弹出层 -->
+<datetime-picker
+        show="{{ showDatePicker }}"
+        type="date"
+        title="选择年月日"
+        value="{{ form.date }}"
+        bind:confirm="onConfirmDatePicker"
+        bind:close="onCloseDatePicker"
+/>
+
+<!-- 类型选择器弹出层 -->
+<category-picker show="{{ showCategoryPicker }}" bind:confirm="onConfirmCategoryPicker" bind:close="onCloseCategoryPicker" showAdd="{{ true }}" value="{{ form.category }}" type="{{ form.type }}"/>
+
+<!-- 轻提示 -->
+<van-toast id="van-toast"/>

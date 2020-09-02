@@ -1,0 +1,28 @@
+.form-control {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+    margin: 6px 0;
+    position: relative;
+}
+
+.form-control-underline {
+    transform: scaleX(0);
+    transition: transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+    border-bottom: 2px solid #303f9f;
+    position: absolute;
+    bottom: -1px;
+    width: 100%;
+
+}
+
+.form-control.focus .form-control-underline {
+    transform: scaleX(1);
+}
+
+.form-control .form-label {
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 1rem;
+}
+
+.form-input {
+    margin: 10px 0;
+}

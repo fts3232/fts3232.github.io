@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "van-image": "@vant/weapp/image/index",
+        "van-cell": "@vant/weapp/cell/index",
+        "van-switch": "@vant/weapp/switch/index"
+    }
+}

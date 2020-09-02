@@ -1,0 +1,7 @@
+{
+    "usingComponents": {
+        "van-empty": "@vant/weapp/empty/index",
+        "my-item": "../../components/item/index",
+        "van-divider": "@vant/weapp/divider/index"
+    }
+}

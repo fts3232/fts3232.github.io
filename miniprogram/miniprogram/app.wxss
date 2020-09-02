@@ -1,7 +1,13 @@
 /**app.wxss**/
-@import '/miniprogram_npm/@vant/weapp/common/index.wxss';
+@import 'style/common.wxss';
+@import 'style/layout.wxss';
+
 page {
-   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
-      Segoe UI, Arial, Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei',
-      sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+    Segoe UI, Arial, Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei',
+    sans-serif;
+    background: #ededed;
+    --tabbar-height:100rpx;
+    font-size: 28rpx;
+    box-sizing: border-box;
 }

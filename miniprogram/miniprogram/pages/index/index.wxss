@@ -1,1 +1,123 @@
 /**index.wxss**/
+@import '../../style/categoryPicker.wxss';
+
+
+page {
+    --header-height:185rpx;
+    padding-top: var(--header-height);
+}
+
+.container {
+    height: calc(100vh - var(--header-height) - var(--tabbar-height) - constant(safe-area-inset-bottom));
+    height: calc(100vh - var(--header-height) - var(--tabbar-height) - env(safe-area-inset-bottom));
+}
+
+
+/** 头部 **/
+.header {
+    background: #3f51b5;
+    color: #fff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+    z-index: 100;
+    padding: 20rpx;
+    height: var(--header-height);
+}
+
+.header .row.selector {
+    margin-bottom:10rpx;
+}
+
+.header .row .col {
+    text-align: center;
+}
+
+.header .row.data {
+    justify-content: flex-start;
+
+}
+
+.header .row.data .col {
+    flex-basis:calc(100% / 3);
+    display: flex;
+    flex-direction: column;
+}
+
+.header .row.data .col:only-of-type {
+    flex-direction: initial;
+    align-items: center;
+    justify-content: center;
+    height: 80rpx;
+}
+
+.header .row.data .col:only-of-type text + text {
+    margin-left: 10rpx;
+    font-size: 48rpx;
+}
+
+.header .row .col .equity, .header .row .col .income, .header .row .col .expend {
+    font-size: 34rpx;
+    font-weight: 400;
+}
+
+/** 添加按钮 **/
+.add-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90rpx;
+    height: 90rpx;
+    background: #fff;
+    box-shadow: 0px 2rpx 10rpx 4rpx rgba(0, 0, 0, 0.2), 0px 4rpx 4rpx 0px rgba(0, 0, 0, 0.14), 0px 6rpx 2rpx -4rpx rgba(0, 0, 0, 0.12);
+    border-radius: 50%;
+    position: fixed;
+    right: 50rpx;
+    text-align: center;
+    z-index: 9999;
+    bottom: calc(constant(safe-area-inset-bottom) + 150rpx); /*兼容 IOS<11.2*/
+    bottom: calc(env(safe-area-inset-bottom) + 150rpx); /*兼容 IOS>11.2*/
+}
+
+/** 列表 **/
+
+.list {
+    height: 100%;
+}
+
+.list .wrapper {
+    height: 100%;
+
+    padding: 20rpx;
+    box-sizing: border-box;
+}
+
+.list-item-group {
+    border-radius: 12rpx;
+    background: #fff;
+    overflow: hidden;
+}
+
+.list-item-group + .list-item-group {
+    margin-top: 20rpx;
+}
+
+.list-item-group .title {
+    padding: 20rpx;
+    background: #fbfbfb;
+    font-weight: bold;
+    font-size: 28rpx;
+}
+
+.list-item-group .title .row .col:nth-child(1){
+    flex: 0 0 230rpx;
+}
+
+.list-item-group .title .margin-left-10 {
+    margin-left: 10rpx;
+}
+
+.list-item-group .content {
+    padding-top: 20rpx;
+}

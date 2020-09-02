@@ -1,0 +1,10 @@
+/**index.wxss**/
+.button-box{
+    text-align: right;
+}
+
+
+.button-box .navigator{
+    display: inline-block;
+    margin-left: 10px;
+}
