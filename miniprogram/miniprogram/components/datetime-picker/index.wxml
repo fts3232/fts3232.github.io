@@ -1,0 +1,11 @@
+<!-- 时间选择器弹出层 -->
+<van-popup show="{{ show }}" position="bottom" z-index="10000" bind:close="onClose">
+    <van-datetime-picker
+            type="{{ type }}"
+            title="{{ title }}"
+            value="{{ value }}"
+            formatter="{{ formatter }}"
+            bind:confirm="onConfirm"
+            bind:cancel="onClose"
+    />
+</van-popup>

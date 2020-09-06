@@ -1,0 +1,41 @@
+<!-- 工具包 -->
+<wxs src="../../util/util.wxs" module="util"/>
+
+<scroll-view class="container" scroll-y="{{ true }}" scroll-with-animation refresher-enabled="{{ refresherEnabled }}" bind:refresherrefresh="onPullDownRefresh" refresher-triggered="{{ refreshStatus }}" bind:scrolltolower="onReachBottom">
+    <!-- 头部 -->
+    <view class="header">
+        <view class="row">
+            <view class="col">
+                <text>{{ util.dateFormat(date, 'Y年m月') }}{{ !util.isEmpty(category) ? category : '' }}共{{ type === 0 ? '支出' : '收入' }}</text>
+            </view>
+        </view>
+        <view class="row">
+            <view class="col">
+                <text class="amount">{{ type === 0 ? '-' : '+' }}{{ util.toFixed(total, 2) }}</text>
+            </view>
+        </view>
+    </view>
+    <!-- 详情 -->
+    <view class="detail" wx:if="{{ !isEmpty(list) }}">
+        <view class="wrapper">
+            <view class="section">
+                <view class="row title">
+                    <view class="col">
+                        <text bind:tap="onChangeSort" data-val="amount" class="tag{{ sort == 'amount' ? ' active' : '' }}">按金额</text>
+                        <text bind:tap="onChangeSort" data-val="date" class="tag{{ sort == 'date' ? ' active' : '' }}">按时间</text>
+                    </view>
+                </view>
+                <view class="list">
+                    <view clas="list-wrapper">
+                        <my-item wx:for="{{ list }}" wx:key="_id" title="{{ item.category }}"  url="/pages/detail/index?id={{ item._id }}" border="{{ index === list.length - 1 ? false : true }}" label="{{ item.remark }}" value="{{ (item.type === 0 ? '-' : '+') + util.toFixed(item.amount, 2) }}" value-class="{{ item.type === 0 ? 'expend' : 'income' }}"/>
+                    </view>
+                </view>
+                <van-divider wx:if="{{ isEnd }}"contentPosition="center" class="divider">暂无更多数据</van-divider>
+            </view>
+        </view>
+    </view>
+    <van-empty wx:else description="暂无数据" class="custom-empty"/>
+</scroll-view>
+
+<!-- 轻提示 -->
+<van-toast id="van-toast"/>

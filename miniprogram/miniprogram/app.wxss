@@ -1,7 +1,13 @@
 /**app.wxss**/
+@import 'style/common.wxss';
+@import 'style/layout.wxss';
+
 page {
-  background: #f6f6f6;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica,
+    Segoe UI, Arial, Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft Yahei',
+    sans-serif;
+    background: #ededed;
+    --tabbar-height:100rpx;
+    font-size: 28rpx;
+    box-sizing: border-box;
 }

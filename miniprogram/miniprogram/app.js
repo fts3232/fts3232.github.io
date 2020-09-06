@@ -1,5 +1,8 @@
 //app.js
 App({
+    globalData: {
+
+    },
     //生命周期回调——监听小程序初始化
     onLaunch() {
         if (!wx.cloud) {
@@ -14,22 +17,32 @@ App({
                 traceUser: true,
             })
         }
-    },
-    globalData: {
-        
+
+        //如果有新版强制更新
+        const updateManager = wx.getUpdateManager();
+        updateManager.onUpdateReady(function () {
+            updateManager.applyUpdate();
+        })
+
+        updateManager.onUpdateFailed(function () {
+            // 新版本下载失败
+        })
     },
     //生命周期回调——监听小程序启动或切前台
     onShow() {
         console.log('show')
-    },
+    }
+    ,
     //生命周期回调——监听小程序切后台
     onHide() {
         console.log('hide')
-    },
+    }
+    ,
     //错误监听函数
     onError(msg) {
         console.log(msg)
-    },
+    }
+    ,
     //页面不存在监听函数
     onPageNotFound(res) {
         console.log('页面不存在')

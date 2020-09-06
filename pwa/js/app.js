@@ -1,11 +1,11 @@
-Notification.requestPermission().then(function (result) {
+/*Notification.requestPermission().then(function (result) {
     if (result === 'granted') {
         var options = {
             body: '通知内容',
         };
         new Notification('通知', options);
     }
-});
+});*/
 
 //注册service worker
 if ('serviceWorker' in navigator) {

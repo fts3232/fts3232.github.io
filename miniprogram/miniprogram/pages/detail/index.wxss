@@ -1,0 +1,46 @@
+.container {
+    padding: 20rpx;
+}
+.wrapper {
+    border-radius: 10rpx;
+    overflow: hidden;
+    padding: 40rpx 40rpx 20rpx;
+    background:#fff;
+}
+
+.amount {
+    font-size: 48rpx;
+    font-weight: bold;
+    margin: 10rpx;
+}
+
+.divider {
+    width: 100%;
+    background:#e5e5e5;
+    height: 2rpx;
+    margin: 40rpx 0 20rpx;
+
+}
+
+button {
+    outline: none;
+    background: none;
+    font-size: 28rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+}
+button:after {
+    content:none;
+}
+
+button.danger{
+    color:red
+}
+
+button .icon, button .text {
+    vertical-align: middle;
+}
+
+button .icon {
+    margin-right: 10rpx;
+}

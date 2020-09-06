@@ -1,3 +1,11 @@
 {
-  "usingComponents": {}
+    "usingComponents": {
+        "van-icon": "@vant/weapp/icon/index",
+        "datetime-picker": "../../components/datetime-picker/index",
+        "category-picker": "../../components/category-picker/index",
+        "my-editor": "../../components/editor/index",
+        "van-divider": "@vant/weapp/divider/index",
+        "my-item": "../../components/item/index",
+        "van-empty": "@vant/weapp/empty/index"
+    }
 }

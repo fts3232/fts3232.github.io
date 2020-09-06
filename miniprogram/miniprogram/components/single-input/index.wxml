@@ -1,0 +1,22 @@
+<!-- 填写弹出层 -->
+<van-popup show="{{ show }}" bind:close="onClose" position="bottom" z-index="10000" custom-class="single-input" close-icon-position="top-left">
+    <view class="row toolbar">
+        <view class="col text-align-left">
+            <button class="button cancel" bind:tap="onClose">取消</button>
+        </view>
+        <view class="col text-align-center">
+            <text class="title">{{ title }}</text>
+        </view>
+        <view class="col text-align-right">
+            <button class="button confirm" bind:tap="onConfirm">确定</button>
+        </view>
+    </view>
+    <van-field
+            focus="{{ focus }}"
+            maxlength="{{ maxLength }}"
+            show-word-limit="{{ true }}"
+            value="{{ value }}"
+            placeholder="{{ placeholder }}"
+            bind:change="onChange"
+    />
+</van-popup>

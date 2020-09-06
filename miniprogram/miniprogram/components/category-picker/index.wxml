@@ -1,0 +1,34 @@
+<!-- 工具包 -->
+<wxs src="../../util/util.wxs" module="util"/>
+
+<!-- 类型选择器弹出层 -->
+<van-popup show="{{ show }}" bind:close="onClose" closeable position="bottom" z-index="10000" custom-class="category-picker">
+    <scroll-view class="wrapper" scroll-y="{{ true }}" scroll-with-animation>
+        <view class="group" wx:for="{{ map }}" wx:for-item="item" wx:for-index="i" wx:key="*this">
+            <view class="group-content"  wx:if="{{ !showAdd }}">
+                <view class="item {{ util.isEmpty(value) ? 'selected' : '' }}" bind:tap="onConfirm">
+                    <text>全部类型</text>
+                </view>
+            </view>
+            <view class="row group-title">
+                <view class="col text-align-left">
+                    <text>{{ i == 0 ? '支出' : '收入' }}</text>
+                </view>
+                <view class="col text-align-right" wx:if="{{ showAdd }}">
+                    <text data-type="{{ i }}" bind:tap="onShowInput">添加</text>
+                </view>
+            </view>
+            <view class="group-content">
+                <view class="item {{ value == item && type == i ? 'selected' : '' }}" bind:tap="onConfirm" wx:for="{{ item }}" wx:key="*this" wx:for-item="item" wx:for-index="j" data-type="{{ i }}" data-name="{{ item }}">
+                    <text>{{ item }}</text>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+</van-popup>
+
+<!-- 填写弹出层 -->
+<single-input show="{{ input.show }}" focus="{{ input.focus }}" value="{{ input.value }}" title="请填写类型" placeholder="请填写类型" maxLength="10" bind:close="onCloseInput" bind:confirm="onConfirmInput" bind:validate="onValidate"></single-input>
+
+<!-- 轻提示 -->
+<van-toast id="van-toast"/>

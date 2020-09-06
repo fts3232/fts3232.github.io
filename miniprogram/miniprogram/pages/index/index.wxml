@@ -1,7 +1,88 @@
-<import src="../../templates/header/index.wxml" />
-<import src="../../templates/footer/index.wxml" />
+<!-- 工具包 -->
+<wxs src="../../util/util.wxs" module="util"/>
+
 <view class="container">
-  <template is="header"/>
-  <template is="footer"/>
+    <!-- 添加按钮 -->
+    <view class="add-button" bind:tap="onShowEditor">
+        <van-icon name="edit" size="45rpx" color="#3cc51f"/>
+    </view>
+    <!-- 头部 -->
+    <view class="header">
+        <view class="row selector">
+            <view class="col">
+                <text class="date-picker-button" bind:tap="onShowDatePicker">{{ util.dateFormat(form.date,'Y年m月') }}</text>
+            </view>
+            <view class="col">
+                <text class="category-picker-button" bind:tap="onShowCategoryPicker">{{ !util.isEmpty(form.category) ? (form.type === 0 ? '支出' : '收入') + ' - ' + form.category : '全部类型' }}</text>
+            </view>
+        </view>
+        <view class="row data">
+            <view class="col" wx:if="{{ util.isEmpty(search.type) || search.type === 1 }}">
+                <text>总收入</text>
+                <text class="income">{{ !util.isEmpty(aggregatedData.income) ? util.toFixed(aggregatedData.income, 2) : '0.00' }}</text>
+            </view>
+            <view class="col" wx:if="{{ util.isEmpty(search.type) || search.type === 0 }}">
+                <text>总支出</text>
+                <text class="expend">{{ !util.isEmpty(aggregatedData.expend) ? util.toFixed(aggregatedData.expend, 2) : '0.00'}}</text>
+            </view>
+            <view class="col" wx:if="{{ util.isEmpty(search.type) }}">
+                <text>结余</text>
+                <text class="equity">{{ !util.isEmpty(aggregatedData.equity) ? util.toFixed(aggregatedData.equity, 2) : '0.00'}}</text>
+            </view>
+        </view>
+    </view>
+
+    <!-- 列表 -->
+    <scroll-view wx:if="{{ !util.isEmpty(list) }}" class="list" scroll-y="{{ true }}" scroll-with-animation refresher-enabled="{{ refresherEnabled }}" bind:refresherrefresh="onPullDownRefresh" refresher-triggered="{{ refreshStatus }}"
+                 bind:scroll="onPageScroll" bind:scrolltolower="onReachBottom">
+        <view class="wrapper">
+            <view wx:for="{{ list }}" wx:key="date" wx:if="{{ !util.isEmpty(item.list) }}" wx:for-index="i" wx:for-item="item" class="list-item-group">
+                <view class="title">
+                    <view class="row">
+                        <view class="col">
+                            <text>{{ util.dateFormat(i, "m月d日 w") }}</text>
+                        </view>
+                        <view class="col text-align-right font-weight-normal">
+                            <text>
+                                <text>支出：</text>
+                                <text class="expend">{{ !util.isEmpty(item.expend) ? util.toFixed(item.expend, 2) : '0.00' }}</text>
+                            </text>
+                            <text class="margin-left-10">
+                                <text>收入：</text>
+                                <text class="income">{{ !util.isEmpty(item.income) ? util.toFixed(item.income, 2) : '0.00' }}</text>
+                            </text>
+                        </view>
+                    </view>
+                </view>
+                <view class="content">
+                    <my-item wx:for="{{ item.list }}" wx:key="id" wx:for-index="j" wx:for-item="v" title="{{ v.category }}" url="/pages/detail/index?id={{ v.id }}" border="{{ j === item.list.length - 1 ? false : true }}" label="{{ v.remark  }}"
+                             value="{{ (v.type === 0 ? '-' : '+') + util.toFixed(v.amount, 2) }}" value-class="{{ v.type === 0 ? 'expend' : 'income' }}"/>
+                </view>
+            </view>
+            <van-divider contentPosition="center" class="divider">暂无更多收支</van-divider>
+        </view>
+    </scroll-view>
+    <van-empty wx:else description="暂无数据" class="custom-empty"/>
+
+    <!-- 时间选择器 -->
+    <datetime-picker
+            show="{{ showDatePicker }}"
+            type="year-month"
+            title="选择年月"
+            bind:confirm="onConfirmDatePicker"
+    />
+
+    <!-- 类型选择器 -->
+    <category-picker
+            allow-add="{{ false }}"
+            show="{{ showCategoryPicker }}"
+            bind:confirm="onConfirmCategoryPicker"
+    />
+
+    <!-- 编辑器 -->
+    <my-editor show="{{ showEditor }}" bind:confirm="onConfirmEditor"/>
+
+    <!-- 轻提示 -->
+    <van-toast id="van-toast"/>
 </view>
 

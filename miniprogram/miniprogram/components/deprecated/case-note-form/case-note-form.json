@@ -1,0 +1,10 @@
+{
+    "component": true,
+    "usingComponents": {
+        "my-input": "../form-item/input",
+        "my-picker": "../form-item/picker",
+        "my-textarea": "../form-item/textarea",
+        "my-button": "../button/button",
+        "mp-form": "/miniprogram_npm/weui-miniprogram/form/form"
+    }
+}

@@ -1,0 +1,68 @@
+.container {
+    height: calc(100vh - 100rpx - constant(safe-area-inset-bottom));
+    height: calc(100vh - 100rpx - env(safe-area-inset-bottom));
+    position: relative;
+}
+
+.wrapper {
+
+}
+
+.layout .row {
+    margin-top: 20rpx;
+}
+
+.layout .row .text {
+    color:#7d7d7d;
+    margin: 10rpx 0 0 32rpx;
+    display: inline-block;
+
+}
+
+.nick-name {
+    margin-top: 20rpx;
+    display: block;
+}
+
+.button {
+    background: #fff;
+    font-size: 36rpx;
+    border-radius: 0;
+}
+
+.button.login-button {
+    margin-top: 20rpx;
+}
+
+.button.feedback-button {
+    background: none;
+    border:none;
+    font-size: 28rpx;
+    color:#517399;
+    position: absolute;
+    bottom: 50rpx;
+    width: 100%;
+}
+
+.button.feedback-button:after {
+    border:none;
+}
+
+.cell {
+    --cell-font-size:28rpx;
+    display: flex;
+    align-items: center;
+    padding:20rpx 32rpx;
+    background: #fff;
+    border-top:2rpx solid #e5e5e5;
+    border-bottom:2rpx solid #e5e5e5;
+}
+
+.cell .title, .cell .switch{
+    flex:1;
+}
+
+.cell .switch {
+    display: flex;
+    justify-content: flex-end;
+}

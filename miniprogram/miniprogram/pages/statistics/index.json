@@ -1,0 +1,10 @@
+{
+    "usingComponents": {
+        "van-icon": "@vant/weapp/icon/index",
+        "datetime-picker": "../../components/datetime-picker/index",
+        "van-button": "@vant/weapp/button/index",
+        "van-progress": "@vant/weapp/progress/index",
+        "van-divider": "@vant/weapp/divider/index",
+        "van-empty": "@vant/weapp/empty/index"
+    }
+}

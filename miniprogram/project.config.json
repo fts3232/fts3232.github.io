@@ -10,7 +10,7 @@
 		"minified": true,
 		"newFeature": true,
 		"coverView": true,
-		"nodeModules": false,
+		"nodeModules": true,
 		"autoAudits": false,
 		"showShadowRootInWxmlPanel": true,
 		"scopeDataCheck": false,
@@ -30,7 +30,7 @@
 	},
 	"appid": "wx67cc39056a0ccd70",
 	"projectname": "miniprogram",
-	"libVersion": "2.8.1",
+	"libVersion": "2.12.0",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
@@ -50,13 +50,53 @@
 		"game": {
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": 0,
 			"list": [
 				{
 					"id": -1,
 					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide"
+					"pathName": "pages/databaseGuide/databaseGuide",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "pages/index/index",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "pages/list/index",
+					"pathName": "pages/list/index",
+					"query": "date=2020-08&type=0&category=美容",
+					"scene": null
+				},
+				{
+					"id": 3,
+					"name": "pages/detail/index",
+					"pathName": "pages/detail/index",
+					"query": "id=4eeb436a5f42689c000036f15f340e5d",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/setting/index",
+					"pathName": "pages/setting/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/statistics/index",
+					"pathName": "pages/statistics/index",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

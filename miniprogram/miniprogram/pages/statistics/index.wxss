@@ -1,0 +1,229 @@
+.container {
+    height: calc(100vh - var(--tabbar-height) - constant(safe-area-inset-bottom));
+    height: calc(100vh - var(--tabbar-height) - env(safe-area-inset-bottom));
+}
+
+/** 头部 **/
+.header {
+    background: #fff;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 60rpx 0;
+    height: 350rpx;
+    box-sizing: border-box;
+}
+
+.header .row {
+    text-align: center;
+    margin: 10rpx 0;
+}
+
+.header .expend,
+.header .income {
+    font-size: 48rpx;
+}
+
+.header .row:nth-child(3) {
+    font-size: 50rpx;
+}
+
+.header .row:nth-child(4) {
+    font-size: 24rpx;
+}
+
+.header button:after {
+    border: none;
+}
+
+.header .date-picker-button {
+    background: #f7f7f7;
+    border: none;
+    border-radius: 20rpx;
+    display: inline-block;
+}
+
+.header .date-picker-button text,
+.header .date-picker-button .icon {
+    vertical-align: middle;
+}
+
+.header .divider {
+    color: #e1e1e1;
+}
+
+/** 详情 **/
+.detail {
+    margin-top: 20rpx;
+    background: #fff;
+    padding: 40rpx 30rpx;
+}
+
+.detail .title {
+    text-align: left;
+}
+
+.detail .title .col:nth-child(1) {
+    font-size: 32rpx;
+}
+
+.detail .title .col:nth-child(2) {
+    text-align: right;
+}
+
+.detail .title .col:nth-child(2) .tag {
+    border-radius: 40rpx;
+    padding: 10rpx 20rpx;
+    background: #ededed;
+    color: #8e8e8e;
+}
+
+.detail .title .col:nth-child(2) .tag.income.active {
+    border: 2rpx solid var(--color);
+    color:var(--color);
+    background: #ecf7f1;
+}
+
+.detail .title .col:nth-child(2) .tag.expend.active {
+    border: 2rpx solid var(--color);
+    color:var(--color);
+    background: #f5dddd;
+}
+
+.detail .title .col:nth-child(2) .tag + .tag {
+    margin-left: 20rpx;
+}
+
+.detail .list {
+    min-height: 50rpx;
+}
+
+.detail .list .row {
+    margin-top: 40rpx;
+}
+
+.detail .list .col.progress-wrapper {
+    font-size: 24rpx;
+}
+
+.detail .list .col.progress-wrapper .progress-root {
+    width: 300rpx;
+    margin-left: 10rpx;
+}
+
+.detail .list .col.progress-wrapper .progress {
+    display: inline-block;
+}
+
+.detail .list .col.left {
+    width: 125rpx;
+    text-align: left;
+}
+
+.detail .list .col.right {
+    flex: 1;
+    margin-left: 20rpx;
+    display: inline-block;
+    text-align: right;
+}
+
+/** 图表 **/
+.detail .chart {
+    display: flex;
+    height: 400rpx;
+    width: 100%;
+    margin-top: 40rpx;
+}
+
+.detail .chart .chart-item {
+    flex: 1 0 calc(100% / 6);
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    opacity: 0.6;
+}
+
+.detail .chart .chart-item.selected {
+    opacity: 1;
+}
+
+.detail .chart .chart-item .name {
+    color:#000;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.detail .chart .chart-item .name.border-right {
+    border-right:2rpx solid #e7e7e7;
+}
+
+.detail .chart .chart-item .name.border-left {
+    border-left:2rpx solid #e7e7e7;
+}
+
+.detail .chart .chart-item .divider {
+    height:2rpx;
+    width: 100%;
+    background: #e7e7e7;
+    margin-bottom: 5rpx;
+}
+
+.detail .chart .chart-item .percentage-bar {
+    height: 250rpx;
+    width: 30rpx;
+    margin: 0 auto;
+    margin-top: 20rpx;
+    display: flex;
+    align-content: flex-end;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 50rpx;
+    box-shadow: border-box;
+}
+
+.detail .chart .chart-item .percentage-bar .text {
+    margin-bottom: 10rpx;
+    font-size: 24rpx;
+}
+
+.detail .chart .chart-item .percentage-bar .percentage {
+    background: var(--color);
+    width: 100%;
+    --min-height:5rpx;
+    height:var(--min-height);
+    min-height:var(--min-height);
+}
+
+/** 空状态 **/
+.custom-empty .van-empty{
+    background: #fff;
+    margin-top: 20rpx;
+    height: calc(100vh - 100rpx - constant(safe-area-inset-bottom) - 370rpx);
+    height: calc(100vh - 100rpx - env(safe-area-inset-bottom) - 370rpx);
+}
+
+/** 排行 **/
+.rank .list {
+    margin-top: 20rpx
+}
+
+.rank .more {
+    color:#576b94;
+    font-size: 28rpx;
+}
+
+.rank .list .row .col.right {
+    text-align: right;
+}
+
+.rank .list .row .col.left .number {
+    margin-right: 10rpx;
+}
+
+.rank .list .row .col.right .date, .rank .list .row .col.left .number {
+    color: #b8b8b8;
+}

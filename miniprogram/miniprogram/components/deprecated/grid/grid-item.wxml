@@ -1,0 +1,5 @@
+<view class="grid-item">
+    <view class="grid-item-content">
+        <slot></slot>
+    </view>
+</view>

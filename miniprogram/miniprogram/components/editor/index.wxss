@@ -1,0 +1,107 @@
+@import "../../style/common.wxss";
+@import "../../style/layout.wxss";
+
+/** 编辑器 **/
+.editor {
+    padding-top: 75rpx;
+}
+
+.editor .row .col {
+    padding: 20rpx;
+}
+
+.editor .date .col .button {
+    background: #ccc;
+    padding: 10rpx 30rpx;
+    border-radius: 40rpx;
+    display: inline-block;
+}
+
+.editor .date .col .button:after {
+    content:'';
+    display: inline-block;
+    border-width: 12rpx 12rpx 0 12rpx;
+    margin-left: 10rpx;
+    border-style: solid;
+    border-color:#000 transparent transparent transparent;
+    vertical-align: middle;
+}
+
+.editor .amount {
+    font-size: 60rpx;
+    font-weight: bold;
+}
+
+.editor .amount .col {
+    border-bottom: 2rpx solid #ccc;
+}
+
+.editor .remark, .editor .category {
+    color: #61749a;
+}
+
+.editor .keyboard {
+    background: #ccc;
+    flex-wrap: wrap;
+    align-content: space-between;
+    padding: 20rpx;
+    box-sizing: border-box;
+}
+
+.editor .keyboard .left {
+    padding: 0;
+}
+
+.editor .keyboard .left, .editor .keyboard .right {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    flex-basis: 75%;
+    box-sizing: border-box;
+}
+
+.editor .keyboard .right {
+    flex-basis: 25%;
+    padding: 0 0 0 20rpx;
+    align-content: flex-start;
+}
+
+.editor .keyboard .left .key, .editor .keyboard .right .key {
+    background: #fff;
+    text-align: center;
+    padding: 20rpx 0;
+    flex: 1;
+    height: 85rpx;
+    flex-basis: 100%;
+    margin-top: 20rpx;
+    box-sizing: border-box;
+    border-radius: 20rpx;
+    line-height: 45rpx;
+}
+
+.editor .keyboard .left .key {
+    flex-basis: calc(33.3333% - 20rpx);
+    margin-right: 20rpx;
+}
+
+.editor .keyboard .right .key:nth-child(2) {
+    height: 295rpx;
+    line-height: 295rpx;
+
+}
+
+.editor .keyboard .right .key.disabled {
+    opacity: 0.6;
+}
+
+.editor .keyboard .left .key:nth-child(10) {
+    flex-basis: calc(66.6666% - 20rpx);
+}
+
+.editor .keyboard .left .key:nth-child(-n+3), .editor .keyboard .right .key:nth-child(1) {
+    margin-top: 0;
+}
+
+.editor .keyboard .key:nth-child(3n), .editor .keyboard .key:last-child {
+    margin-right: 0;
+}

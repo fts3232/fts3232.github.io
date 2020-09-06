@@ -1,0 +1,7 @@
+<view class="form-control{{ focus ? ' focus' : '' }}">
+    <label>
+        <text class="form-label">{{ label }}</text>
+        <textarea class="form-input" placeholder="{{ placeholder }}" value="{{ value }}" bind:tap="onFocus" bind:blur="onBlur" bind:input="onInput" bind:confirm="onConfirm"/>
+    </label>
+    <view class="form-control-underline"></view>
+</view>

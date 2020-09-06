@@ -1,0 +1,38 @@
+<!-- 工具包 -->
+<wxs src="../../util/util.wxs" module="util"/>
+
+<view class="container">
+    <view class="wrapper" wx:if="{{ !util.isEmpty(result) }}">
+        <view class="text-align-center">
+            <text>{{ result.category }}</text>
+        </view>
+        <view class="amount text-align-center">
+            <text>{{ result.type === 0 ? '-' : '+' }}{{ util.toFixed(result.amount, 2) }}</text>
+        </view>
+        <view class="text-align-center">
+            <text>{{ util.dateFormat(result.date, 'Y年m月d日') }}</text>
+        </view>
+        <view class="text-align-center">
+            <text>{{ result.remark }}</text>
+        </view>
+        <view class="divider"></view>
+        <view class="row">
+            <view class="col">
+                <button class="danger" bind:tap="onDelete">
+                    <van-icon name="delete" class="icon"/><text class="text">删除</text>
+                </button>
+            </view>
+            <view class="col">
+                <button bind:tap="onShowEditor">
+                    <van-icon name="edit" class="icon"/><text class="text">编辑</text>
+                </button>
+            </view>
+        </view>
+    </view>
+</view>
+
+<!-- 编辑器 -->
+<my-editor show="{{ showEditor }}" bind:confirm="onConfirmEditor" id="editor"/>
+
+<!-- 轻提示 -->
+<van-toast id="van-toast"/>

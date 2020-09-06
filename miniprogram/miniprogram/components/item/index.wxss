@@ -1,0 +1,16 @@
+@import "../../style/common.wxss";
+@import "../../style/layout.wxss";
+
+.item {
+    padding-top: 20rpx;
+}
+
+.item .delete-button {
+    height:100%
+}
+
+.item .delete-button .van-button {
+    height:100%;
+    width: 65px;
+    font-size: 72rpx;
+}
