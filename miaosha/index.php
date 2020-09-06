@@ -13,7 +13,8 @@ class miaosha
     {
         try {
             $redis = new Redis();
-            $redis->connect('127.0.0.1', 6379);
+            $redis->connect('119.45.227.181', 6379);
+            $redis->auth('password');
             $redis->ping();
             $this->handle = $redis;
             $pdo = new PDO('mysql:host=localhost;dbname=laravel', 'root', '');
@@ -69,7 +70,10 @@ else
     -- 获取当前产品库存和已卖数量
     local rst = redis.call('hMGet', KEYS[1],'num','total');
     -- 如果库存大于已卖数量，允许客户购买，不然提示没货
-    if(tonumber(rst[1]) < tonumber(rst[2]))   
+    if(rst[1] == false and rst[2] == false)
+    then
+        return {false,'用户:'..ARGV[1]..'-redis没有数据'};
+    elseif(tonumber(rst[1]) < tonumber(rst[2]))   
     then
         local a = redis.call('zIncrBy',KEYS[2], 1, ARGV[1]);
         local num = redis.call('hIncrBy', KEYS[1], 'num', 1);
