@@ -1,39 +1,130 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-    <title>产品标题</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
     <style>
-        .title {
-            font-size: 30px;
-            font-weight: bold;
-            text-align: left;
-            padding: 10px 0;
-            color: #000;
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
         }
-        img {
-            width: 323px;
-            height: 250px;
-        }
-        .code {
-            color: red;
-            font-weight: bold;
+
+        .slide-wrapper {
             width: 100%;
-            margin-top: 10px;
-            font-size: 25px;
+            height: 100%;
+            position: fixed;
+            transition: transform 0.5s ease 0s;
+            transform: translate(0px, 0px);
         }
-        .description {
-            color: red;
-            margin-top: 10px;
-            font-size: 25px;
+
+        .slide-wrapper .slide {
+            width: 100%;
+            height: 100%;
+        }
+
+        .slide-wrapper .slide:nth-child(1) {
+            background: red;
+        }
+
+        .slide-wrapper .slide:nth-child(2) {
+            background: blue;
+        }
+
+        .slide-wrapper .slide:nth-child(3) {
+            background: green;
+        }
+
+        .slide-wrapper .slide:nth-child(4) {
+            background: yellow;
+        }
+
+        .slide-container .slide-pagination {
+            list-style: none;
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+
+        .slide-container .slide-pagination li {
+            border: 5px solid white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: block;
+            position: relative;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        .slide-container .slide-pagination li.active {
+            background: white;
         }
     </style>
 </head>
+
 <body>
-<h1 class="title">产品标题</h1>
-<img src="battery.jpg" />
-<div class="code">产品序号：xxxx</div>
-<div class="description">产品描述产品描述产品描述产品描述产品描述产品描述产品描述产品描述产品描述产品描述产品描述产品描述产品描述产品描述产品描述产品描述产品描述产品描述产品描</div>
+<div class="slide-container">
+    <div class="slide-wrapper">
+        <div class="slide"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+        <div class="slide"></div>
+    </div>
+</div>
+<script>
+    let container = document.querySelector('.slide-container')
+    let wrapper = document.querySelector('.slide-wrapper')
+    let targetIndex = 0;
+    let slideLength = wrapper.querySelectorAll('.slide').length;
+    let mouseSlideTimer = null;
+
+    function createPagination() {
+        let paginator = document.createElement('ul')
+        paginator.className = 'slide-pagination'
+        for (let i = 0; i < slideLength; i++) {
+            let item = document.createElement('li')
+            if (i === targetIndex) {
+                item.className = 'active'
+            }
+            item.addEventListener('click', function (e) {
+                slideTo(i)
+            })
+            paginator.appendChild(item)
+        }
+        container.appendChild(paginator)
+    }
+
+    function slideTo(index) {
+        let h = wrapper.offsetHeight * index;
+        wrapper.style.transform = 'translate(0px, -' + h + 'px)'
+        document.querySelectorAll('.slide-pagination li')[targetIndex].className = '';
+        document.querySelectorAll('.slide-pagination li')[index].className = 'active';
+        targetIndex = index;
+    }
+
+    function mouseSlide(e) {
+        //防抖
+        clearTimeout(mouseSlideTimer)
+        mouseSlideTimer = setTimeout(function () {
+            let index
+            //向下
+            if (e.deltaY > 0) {
+                index = Math.min(targetIndex + 1, slideLength - 1)
+            }
+            //向上
+            else if (e.deltaY < 0) {
+                index = Math.max(0, targetIndex - 1)
+            }
+            slideTo(index)
+        }, 100)
+        return false;
+    }
+
+    wrapper.addEventListener('mousewheel', mouseSlide)
+    createPagination()
+    if (targetIndex !== 0) {
+        slideTo(targetIndex)
+    }
+</script>
 </body>
 </html>
