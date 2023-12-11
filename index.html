@@ -1,140 +1,142 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <link href="css/app.min.css" rel="stylesheet">
 </head>
 
 <body>
-<div class="slide-container">
-    <div class="slide-wrapper">
-        <div class="slide">
-            <div class="frosted-glass">
-                <div class="bg">
-                    <div class="g-polygon g-polygon-1"></div>
-                    <div class="g-polygon g-polygon-2"></div>
-                    <div class="g-polygon g-polygon-3"></div>
-                </div>
-                <div class="content">
-                    <div class="sprite-animation"></div>
-                    <span class="smoky-word">烟幕</span>
-                    <div class="btn parallelogram">按钮</div>
-                    <div class="filter-mix"></div>
-                    <div class="flash-text">
-                        <div class="word">iPhone</div>
-                        <div class="word">13</div>
-                        <div class="word">Pro</div>
-                        <div class="word">强得很！</div>
+    <div class="slide-container">
+        <div class="slide-wrapper">
+            <div class="slide">
+                <div class="frosted-glass">
+                    <div class="bg">
+                        <div class="g-polygon g-polygon-1"></div>
+                        <div class="g-polygon g-polygon-2"></div>
+                        <div class="g-polygon g-polygon-3"></div>
                     </div>
-                    <div class="progress">
-                        <div class="bar"></div>
-                    </div>
-                    <div class="progress circle"></div>
-                    <div class="progress sphere">
-                        <div class="wrapper">
+                    <div class="content">
+                        <div class="sprite-animation"></div>
+                        <span class="smoky-word">烟幕</span>
+                        <div class="btn parallelogram">按钮</div>
+                        <div class="filter-mix"></div>
+                        <div class="flash-text">
+                            <div class="word">iPhone</div>
+                            <div class="word">13</div>
+                            <div class="word">Pro</div>
+                            <div class="word">强得很！</div>
+                        </div>
+                        <div class="progress">
                             <div class="bar"></div>
                         </div>
-                        <p>45%</p>
-                    </div>
-                    <div class="wave">
-                        <h2>Pure</h2>
-                    </div>
-                    <div class="battery-container">
-                        <div class="header"></div>
-                        <div class="battery"></div>
-                        <div class="battery-copy">
-                            <div class="wave"></div>
-                            <div class="wave"></div>
-                            <div class="wave"></div>
+                        <div class="progress circle"></div>
+                        <div class="progress sphere">
+                            <div class="wrapper">
+                                <div class="bar"></div>
+                            </div>
+                            <p>45%</p>
                         </div>
-                    </div>
-                    <div class="huawei-battery">
-                        <div class="g-number">98.7%</div>
-                        <div class="g-contrast">
-                            <div class="g-circle"></div>
-                            <ul class="g-bubbles">
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
+                        <div class="wave">
+                            <h2>Pure</h2>
+                        </div>
+                        <div class="battery-container">
+                            <div class="header"></div>
+                            <div class="battery"></div>
+                            <div class="battery-copy">
+                                <div class="wave"></div>
+                                <div class="wave"></div>
+                                <div class="wave"></div>
+                            </div>
+                        </div>
+                        <div class="huawei-battery">
+                            <div class="g-number">98.7%</div>
+                            <div class="g-contrast">
+                                <div class="g-circle"></div>
+                                <ul class="g-bubbles">
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="slide">
+            <div class="slide">
 
+            </div>
+            <div class="slide">1</div>
+            <div class="slide"></div>
         </div>
-        <div class="slide"></div>
-        <div class="slide"></div>
     </div>
-</div>
-<script>
-    let container = document.querySelector('.slide-container')
-    let wrapper = document.querySelector('.slide-wrapper')
-    let targetIndex = 0;
-    let slideLength = wrapper.querySelectorAll('.slide').length;
-    let mouseSlideTimer = null;
+    <script>
+        let container = document.querySelector('.slide-container')
+        let wrapper = document.querySelector('.slide-wrapper')
+        let targetIndex = 0;
+        let slideLength = wrapper.querySelectorAll('.slide').length;
+        let mouseSlideTimer = null;
 
-    function createPagination() {
-        let paginator = document.createElement('ul')
-        paginator.className = 'slide-pagination'
-        for (let i = 0; i < slideLength; i++) {
-            let item = document.createElement('li')
-            if (i === targetIndex) {
-                item.className = 'active'
+        function createPagination() {
+            let paginator = document.createElement('ul')
+            paginator.className = 'slide-pagination'
+            for (let i = 0; i < slideLength; i++) {
+                let item = document.createElement('li')
+                if (i === targetIndex) {
+                    item.className = 'active'
+                }
+                item.addEventListener('click', function (e) {
+                    slideTo(i)
+                })
+                paginator.appendChild(item)
             }
-            item.addEventListener('click', function (e) {
-                slideTo(i)
-            })
-            paginator.appendChild(item)
+            container.appendChild(paginator)
         }
-        container.appendChild(paginator)
-    }
 
-    function slideTo(index) {
-        let h = wrapper.offsetHeight * index;
-        wrapper.style.transform = 'translate(0px, -' + h + 'px)'
-        document.querySelectorAll('.slide-pagination li')[targetIndex].className = '';
-        document.querySelectorAll('.slide-pagination li')[index].className = 'active';
-        targetIndex = index;
-    }
+        function slideTo(index) {
+            let h = wrapper.offsetHeight * index;
+            wrapper.style.transform = 'translate(0px, -' + h + 'px)'
+            document.querySelectorAll('.slide-pagination li')[targetIndex].className = '';
+            document.querySelectorAll('.slide-pagination li')[index].className = 'active';
+            targetIndex = index;
+        }
 
-    function mouseSlide(e) {
-        //防抖
-        clearTimeout(mouseSlideTimer)
-        mouseSlideTimer = setTimeout(function () {
-            let index
-            //向下
-            if (e.deltaY > 0) {
-                index = Math.min(targetIndex + 1, slideLength - 1)
-            }
-            //向上
-            else if (e.deltaY < 0) {
-                index = Math.max(0, targetIndex - 1)
-            }
-            slideTo(index)
-        }, 100)
-        return false;
-    }
+        function mouseSlide(e) {
+            //防抖
+            clearTimeout(mouseSlideTimer)
+            mouseSlideTimer = setTimeout(function () {
+                let index
+                //向下
+                if (e.deltaY > 0) {
+                    index = Math.min(targetIndex + 1, slideLength - 1)
+                }
+                //向上
+                else if (e.deltaY < 0) {
+                    index = Math.max(0, targetIndex - 1)
+                }
+                slideTo(index)
+            }, 100)
+            return false;
+        }
 
-    wrapper.addEventListener('mousewheel', mouseSlide)
-    createPagination()
-    if (targetIndex !== 0) {
-        slideTo(targetIndex)
-    }
-</script>
+        wrapper.addEventListener('mousewheel', mouseSlide)
+        createPagination()
+        if (targetIndex !== 0) {
+            slideTo(targetIndex)
+        }
+    </script>
 </body>
+
 </html>
